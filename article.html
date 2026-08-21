@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+
+    <title>Article — SharingSpace</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      .comment-form {
+        margin-top: 24px;
+        margin-bottom: 32px;
+      }
+
+      .comment-input {
+        width: 100%;
+        min-height: 110px;
+        padding: 14px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        resize: vertical;
+        font: inherit;
+        box-sizing: border-box;
+        outline: none;
+      }
+
+      .comment-input:focus {
+        border-color: #111;
+      }
+
+      .comment-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 12px;
+      }
+
+      .comment-submit:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      .login-prompt {
+        margin-top: 12px;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .login-prompt a {
+        color: #111;
+        font-weight: 600;
+      }
+
+      .comment-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .comment {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .comment-content {
+        flex: 1;
+      }
+
+      .comment-content strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .comment-content p {
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      .comment-date {
+        display: block;
+        margin-top: 5px;
+        font-size: 12px;
+        color: #888;
+      }
+
+      .success-message {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 280px;
+        padding: 16px 18px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        opacity: 0;
+        transform: translateY(-15px);
+        pointer-events: none;
+        transition: all 0.25s ease;
+        z-index: 1000;
+      }
+
+      .success-message.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .success-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #111;
+        color: #fff;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .success-message strong {
+        display: block;
+        font-size: 14px;
+      }
+
+      .success-message p {
+        margin: 3px 0 0;
+        font-size: 13px;
+        color: #666;
+      }
+
+      @media (max-width: 600px) {
+        .success-message {
+          top: 16px;
+          left: 16px;
+          right: 16px;
+          min-width: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="logo" href="index.html">SharingSpace</a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="about.html">About</a>
+      </nav>
+
+      <div class="header-actions">
+        <a
+          class="write-link"
+          href="create-post.html"
+        >
+          Write
+        </a>
+
+        <a
+          class="signin"
+          id="signinLink"
+          href="login.html"
+        >
+          Sign in
+        </a>
+
+        <a
+          class="signin"
+          id="dashboardLink"
+          href="dashboard.html"
+          style="display: none;"
+        >
+          Dashboard
+        </a>
+
+        <button
+          class="signin"
+          id="logoutButton"
+          type="button"
+          style="
+            display: none;
+            border: 0;
+            background: none;
+            cursor: pointer;
+          "
+        >
+          Exit
+        </button>
+      </div>
+    </header>
+
+    <main class="article-page">
+      <p class="eyebrow">
+        DATA ENGINEERING · 8 MIN READ
+      </p>
+
+      <h1>
+        What I learned building my first ETL pipeline
+      </h1>
+
+      <p class="article-lead">
+        A practical reflection on extracting data, transforming
+        it with Python and loading it into PostgreSQL.
+      </p>
+
+      <div class="author-line">
+        <span class="avatar">AK</span>
+        <span>Aung Kha</span>
+        <span>·</span>
+        <span>Aug 20, 2026</span>
+      </div>
+
+      <hr />
+
+      <article class="article-body">
+        <p>
+          Building a data pipeline changes the way you think
+          about software. Instead of a user clicking a button
+          and immediately seeing a result, the system has to
+          move information reliably through several stages.
+        </p>
+
+        <h2>Start with the data flow</h2>
+
+        <p>
+          The first step was understanding where the source
+          data came from, what format it used and what the final
+          database needed to contain. This made the pipeline
+          easier to reason about before writing code.
+        </p>
+
+        <blockquote>
+          Good data engineering starts with understanding the
+          flow of data, not with choosing a tool.
+        </blockquote>
+
+        <h2>Extract, transform and load</h2>
+
+        <p>
+          The pipeline can be divided into three clear stages.
+          Extraction reads the source files, transformation
+          cleans and reshapes the records, and loading stores
+          the resulting data in PostgreSQL.
+        </p>
+
+        <pre><code>source → extract → transform → validate → load</code></pre>
+
+        <h2>What I would improve next</h2>
+
+        <p>
+          A prototype pipeline is only the beginning. Future
+          improvements could include orchestration, cloud
+          storage, stronger data quality checks and automated
+          monitoring.
+        </p>
+      </article>
+
+      <!-- COMMENTS -->
+      <section class="comments">
+        <h2>Comments</h2>
+
+        <!-- Comment form -->
+        <div class="comment-form">
+          <textarea
+            id="commentInput"
+            class="comment-input"
+            placeholder="Share your thoughts..."
+            aria-label="Write a comment"
+          ></textarea>
+
+          <div class="comment-actions">
+            <button
+              id="commentSubmit"
+              class="button button-dark comment-submit"
+              type="button"
+              disabled
+            >
+              Post comment
+            </button>
+          </div>
+
+          <p
+            id="loginPrompt"
+            class="login-prompt"
+            style="display: none;"
+          >
+            Please
+            <a href="login.html">sign in</a>
+            to leave a comment.
+          </p>
+        </div>
+
+        <!-- Comment list -->
+        <div
+          id="commentList"
+          class="comment-list"
+        >
+          <div class="comment">
+            <span class="avatar">ML</span>
+
+            <div class="comment-content">
+              <strong>Phyo Thiha</strong>
+
+              <p>
+                This is a useful breakdown of the ETL process.
+              </p>
+
+              <small class="comment-date">
+                Aug 20, 2026
+              </small>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 SharingSpace</span>
+      <span>Student publishing prototype</span>
+    </footer>
+
+    <!-- Success notification -->
+    <div
+      id="success-message"
+      class="success-message"
+    >
+      <div class="success-icon">✓</div>
+
+      <div>
+        <strong>Comment posted</strong>
+
+        <p>
+          Your comment has been added.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const isLoggedIn =
+        localStorage.getItem(
+          "writespace_logged_in"
+        ) === "true";
+
+      const signinLink =
+        document.getElementById("signinLink");
+
+      const dashboardLink =
+        document.getElementById("dashboardLink");
+
+      const logoutButton =
+        document.getElementById("logoutButton");
+
+      const commentInput =
+        document.getElementById("commentInput");
+
+      const commentSubmit =
+        document.getElementById("commentSubmit");
+
+      const loginPrompt =
+        document.getElementById("loginPrompt");
+
+      const commentList =
+        document.getElementById("commentList");
+
+      /*
+       * Header state
+       */
+
+      if (isLoggedIn) {
+        signinLink.style.display = "none";
+        dashboardLink.style.display = "inline-block";
+        logoutButton.style.display = "inline-block";
+        loginPrompt.style.display = "none";
+
+        commentInput.disabled = false;
+      } else {
+        signinLink.style.display = "inline-block";
+        dashboardLink.style.display = "none";
+        logoutButton.style.display = "none";
+
+        commentInput.disabled = true;
+        commentInput.placeholder =
+          "Sign in to join the discussion.";
+
+        loginPrompt.style.display = "block";
+      }
+
+      /*
+       * Enable comment button only
+       * when text has been entered.
+       */
+
+      commentInput.addEventListener("input", () => {
+        const hasComment =
+          commentInput.value.trim().length > 0;
+
+        commentSubmit.disabled =
+          !isLoggedIn || !hasComment;
+      });
+
+      /*
+       * Submit comment
+       */
+
+      commentSubmit.addEventListener(
+        "click",
+        () => {
+          const comment =
+            commentInput.value.trim();
+
+          if (!comment || !isLoggedIn) {
+            return;
+          }
+
+          const newComment =
+            document.createElement("div");
+
+          newComment.className = "comment";
+
+          newComment.innerHTML = `
+            <span class="avatar">AK</span>
+
+            <div class="comment-content">
+              <strong>Aung Kha</strong>
+
+              <p></p>
+
+              <small class="comment-date">
+                Just now
+              </small>
+            </div>
+          `;
+
+          /*
+           * Use textContent instead of injecting
+           * the user's comment directly into HTML.
+           */
+
+          newComment
+            .querySelector("p")
+            .textContent = comment;
+
+          commentList.prepend(newComment);
+
+          commentInput.value = "";
+          commentSubmit.disabled = true;
+
+          showSuccess();
+        }
+      );
+
+      /*
+       * Success notification
+       */
+
+      function showSuccess() {
+        const message =
+          document.getElementById(
+            "success-message"
+          );
+
+        message.classList.add("show");
+
+        setTimeout(() => {
+          message.classList.remove("show");
+        }, 1800);
+      }
+
+      /*
+       * Logout
+       */
+
+      logoutButton.addEventListener(
+        "click",
+        () => {
+          localStorage.removeItem(
+            "writespace_logged_in"
+          );
+
+          window.location.reload();
+        }
+      );
+    </script>
+  </body>
+</html>

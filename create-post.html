@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+
+    <title>Create Post — WriteSpace</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      .editor-actions .button:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      .success-message {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 280px;
+        padding: 16px 18px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        opacity: 0;
+        transform: translateY(-15px);
+        pointer-events: none;
+        transition: all 0.25s ease;
+        z-index: 1000;
+      }
+
+      .success-message.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .success-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #111;
+        color: #fff;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .success-message strong {
+        display: block;
+        font-size: 14px;
+      }
+
+      .success-message p {
+        margin: 3px 0 0;
+        font-size: 13px;
+        color: #666;
+      }
+
+      @media (max-width: 600px) {
+        .success-message {
+          top: 16px;
+          left: 16px;
+          right: 16px;
+          min-width: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="logo" href="index.html">WriteSpace</a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="dashboard.html">Dashboard</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="signin" href="#" onclick="logout(event)">Exit</a>
+      </div>
+    </header>
+
+    <main class="editor-page">
+      <div class="editor-top">
+        <span class="eyebrow">NEW STORY</span>
+        <span id="saveState">Draft not saved</span>
+      </div>
+
+      <input
+        id="postTitle"
+        class="title-input"
+        placeholder="Title"
+        aria-label="Post title"
+      />
+
+      <input
+        id="postSubtitle"
+        class="subtitle-input"
+        placeholder="Tell your readers what this story is about..."
+        aria-label="Post subtitle"
+      />
+
+      <div class="editor-toolbar">
+        <button
+          type="button"
+          onclick="document.execCommand('bold')"
+        >
+          <b>B</b>
+        </button>
+
+        <button
+          type="button"
+          onclick="document.execCommand('italic')"
+        >
+          <i>I</i>
+        </button>
+
+        <button
+          type="button"
+          onclick="document.execCommand('formatBlock', false, 'h2')"
+        >
+          H
+        </button>
+
+        <button
+          type="button"
+          onclick="document.execCommand('insertUnorderedList')"
+        >
+          • List
+        </button>
+      </div>
+
+      <div
+        id="postContent"
+        class="editor"
+        contenteditable="true"
+        data-placeholder="Start writing your story..."
+      ></div>
+
+      <div class="editor-actions">
+        <button
+          id="saveDraftButton"
+          class="button button-light"
+          type="button"
+          disabled
+          onclick="saveDraft()"
+        >
+          Save draft
+        </button>
+
+        <button
+          id="publishButton"
+          class="button button-dark"
+          type="button"
+          disabled
+          onclick="publishPost()"
+        >
+          Publish
+        </button>
+      </div>
+    </main>
+
+    <div id="success-message" class="success-message">
+      <div class="success-icon">✓</div>
+
+      <div>
+        <strong id="successTitle">Success</strong>
+        <p id="successText">Your action was completed.</p>
+      </div>
+    </div>
+
+    <script>
+      /*
+       * Prototype authentication check
+       *
+       * In a real application this would be handled
+       * by backend authentication/session management.
+       */
+
+      const isLoggedIn =
+        localStorage.getItem("writespace_logged_in") === "true";
+
+      if (!isLoggedIn) {
+        window.location.href = "login.html";
+      }
+
+      const titleInput = document.getElementById("postTitle");
+      const subtitleInput = document.getElementById("postSubtitle");
+      const contentEditor = document.getElementById("postContent");
+
+      const saveDraftButton =
+        document.getElementById("saveDraftButton");
+
+      const publishButton =
+        document.getElementById("publishButton");
+
+      const saveState =
+        document.getElementById("saveState");
+
+      function checkPostContent() {
+        const title = titleInput.value.trim();
+        const content = contentEditor.innerText.trim();
+
+        const hasContent = title.length > 0 && content.length > 0;
+
+        saveDraftButton.disabled = !hasContent;
+        publishButton.disabled = !hasContent;
+
+        if (hasContent) {
+          saveState.textContent = "Ready to save";
+        } else {
+          saveState.textContent = "Draft not saved";
+        }
+      }
+
+      titleInput.addEventListener(
+        "input",
+        checkPostContent
+      );
+
+      subtitleInput.addEventListener(
+        "input",
+        checkPostContent
+      );
+
+      contentEditor.addEventListener(
+        "input",
+        checkPostContent
+      );
+
+      function showSuccess(title, message) {
+        document.getElementById(
+          "successTitle"
+        ).textContent = title;
+
+        document.getElementById(
+          "successText"
+        ).textContent = message;
+
+        document
+          .getElementById("success-message")
+          .classList.add("show");
+
+        setTimeout(() => {
+          document
+            .getElementById("success-message")
+            .classList.remove("show");
+        }, 1800);
+      }
+
+      function saveDraft() {
+        const title = titleInput.value.trim();
+        const subtitle = subtitleInput.value.trim();
+        const content = contentEditor.innerHTML;
+
+        localStorage.setItem(
+          "writespace_draft",
+          JSON.stringify({
+            title,
+            subtitle,
+            content
+          })
+        );
+
+        saveState.textContent = "Draft saved";
+
+        showSuccess(
+          "Draft saved",
+          "Your story has been saved."
+        );
+      }
+
+      function publishPost() {
+        const title = titleInput.value.trim();
+        const subtitle = subtitleInput.value.trim();
+        const content = contentEditor.innerHTML;
+
+        if (!title || !content) {
+          return;
+        }
+
+        localStorage.setItem(
+          "writespace_last_post",
+          JSON.stringify({
+            title,
+            subtitle,
+            content
+          })
+        );
+
+        showSuccess(
+          "Post published",
+          "Your story is now published."
+        );
+
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1800);
+      }
+
+      function logout(event) {
+        event.preventDefault();
+
+        localStorage.removeItem(
+          "writespace_logged_in"
+        );
+
+        window.location.href = "login.html";
+      }
+
+      checkPostContent();
+    </script>
+  </body>
+</html>

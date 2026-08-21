@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+
+    <title>Sign in — SharingSpace</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      .success-message {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 280px;
+        padding: 16px 18px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        opacity: 0;
+        transform: translateY(-15px);
+        pointer-events: none;
+        transition: all 0.25s ease;
+        z-index: 1000;
+      }
+
+      .success-message.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .success-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #111;
+        color: #fff;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .success-message strong {
+        display: block;
+        font-size: 14px;
+      }
+
+      .success-message p {
+        margin: 3px 0 0;
+        font-size: 13px;
+        color: #666;
+      }
+
+      @media (max-width: 600px) {
+        .success-message {
+          top: 16px;
+          left: 16px;
+          right: 16px;
+          min-width: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="auth-page">
+      <a class="logo" href="index.html">SharingSpace</a>
+
+      <div class="auth-card">
+        <p class="eyebrow">WELCOME BACK</p>
+
+        <h1>Sign in</h1>
+
+        <p>
+          Continue writing and reading with SharingSpace.
+        </p>
+
+        <form
+          onsubmit="
+            event.preventDefault();
+
+            localStorage.setItem(
+              'writespace_logged_in',
+              'true'
+            );
+
+            document
+              .getElementById('success-message')
+              .classList.add('show');
+
+            setTimeout(() => {
+              window.location.href = 'index.html';
+            }, 1200);
+          "
+        >
+          <label>
+            Email
+
+            <input
+              type="email"
+              required
+              placeholder="you@example.com"
+            />
+          </label>
+
+          <label>
+            Password
+
+            <input
+              type="password"
+              required
+              placeholder="••••••••"
+            />
+          </label>
+
+          <label class="check">
+            <input type="checkbox" />
+            Remember me
+          </label>
+
+          <button
+            class="button button-dark full"
+            type="submit"
+          >
+            Sign in
+          </button>
+        </form>
+
+        <p class="auth-bottom">
+          New here?
+          <a href="register.html">
+            Create an account
+          </a>
+        </p>
+      </div>
+    </main>
+
+    <div
+      id="success-message"
+      class="success-message"
+    >
+      <div class="success-icon">✓</div>
+
+      <div>
+        <strong>Sign in successful</strong>
+
+        <p>
+          Welcome back to SharingSpace.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

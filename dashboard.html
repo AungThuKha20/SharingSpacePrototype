@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard — WriteSpace</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="index.html">WriteSpace</a>
+      <nav>
+        <a href="index.html">Home</a><a href="explore.html">Explore</a
+        ><a href="about.html">About</a>
+      </nav>
+      <div class="header-actions">
+        <a class="write-link" href="create-post.html">Write</a
+        ><a class="signin" href="index.html">Sign out</a>
+      </div>
+    </header>
+    <main class="dashboard">
+      <aside class="sidebar">
+        <p class="eyebrow">WRITER</p>
+        <h3>Aung Kha</h3>
+        <a class="side-active" href="dashboard.html">Dashboard</a
+        ><a href="posts.html">My posts</a
+        ><a href="create-post.html">Create post</a><a href="#">Profile</a
+        ><a href="#">Settings</a>
+      </aside>
+      <section class="dash-main">
+        <div class="dash-title">
+          <div>
+            <p class="eyebrow">YOUR WRITING</p>
+            <h1>Dashboard</h1>
+          </div>
+          <a class="button button-dark" href="create-post.html">+ New post</a>
+        </div>
+        <div class="stats">
+          <div><span>Published</span><strong>12</strong></div>
+          <div><span>Drafts</span><strong>3</strong></div>
+          <div><span>Total views</span><strong>4.8k</strong></div>
+          <div><span>Followers</span><strong>184</strong></div>
+        </div>
+        <div class="dash-section">
+          <div class="section-heading">
+            <h2>Recent posts</h2>
+            <a href="posts.html">View all →</a>
+          </div>
+          <div class="table">
+            <div class="table-head">
+              <span>Title</span><span>Status</span><span>Views</span
+              ><span>Action</span>
+            </div>
+            <div class="table-row">
+              <span>What I learned building my first ETL pipeline</span
+              ><span class="status published">Published</span><span>842</span
+              ><a href="edit-post.html">Edit</a>
+            </div>
+            <div class="table-row">
+              <span>Learning Docker as a data engineer</span
+              ><span class="status draft">Draft</span><span>—</span
+              ><a href="edit-post.html">Edit</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
