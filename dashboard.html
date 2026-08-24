@@ -3,19 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Dashboard — WriteSpace</title>
+    <title>Dashboard — SharingSpace</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="logo" href="index.html">WriteSpace</a>
+      <a class="logo" href="index.html">SharingSpace</a>
       <nav>
         <a href="index.html">Home</a><a href="explore.html">Explore</a
         ><a href="about.html">About</a>
       </nav>
       <div class="header-actions">
         <a class="write-link" href="create-post.html">Write</a
-        ><a class="signin" href="index.html">Sign out</a>
+        ><button
+          class="signin"
+          id="logoutButton"
+          type="button"
+          style="border: 0; background: none; cursor: pointer"
+        >
+          Exit
+        </button>
       </div>
     </header>
     <main class="dashboard">
@@ -24,8 +31,8 @@
         <h3>Aung Kha</h3>
         <a class="side-active" href="dashboard.html">Dashboard</a
         ><a href="posts.html">My posts</a
-        ><a href="create-post.html">Create post</a><a href="#">Profile</a
-        ><a href="#">Settings</a>
+        ><a href="create-post.html">Create post</a
+        ><a href="about.html">About</a>
       </aside>
       <section class="dash-main">
         <div class="dash-title">
@@ -36,10 +43,12 @@
           <a class="button button-dark" href="create-post.html">+ New post</a>
         </div>
         <div class="stats">
-          <div><span>Published</span><strong>12</strong></div>
-          <div><span>Drafts</span><strong>3</strong></div>
-          <div><span>Total views</span><strong>4.8k</strong></div>
-          <div><span>Followers</span><strong>184</strong></div>
+          <div>
+            <span>Published</span><strong id="publishedCount">0</strong>
+          </div>
+          <div><span>Drafts</span><strong>1</strong></div>
+          <div><span>Total views</span><strong>—</strong></div>
+          <div><span>Followers</span><strong>—</strong></div>
         </div>
         <div class="dash-section">
           <div class="section-heading">
@@ -51,19 +60,11 @@
               <span>Title</span><span>Status</span><span>Views</span
               ><span>Action</span>
             </div>
-            <div class="table-row">
-              <span>What I learned building my first ETL pipeline</span
-              ><span class="status published">Published</span><span>842</span
-              ><a href="edit-post.html">Edit</a>
-            </div>
-            <div class="table-row">
-              <span>Learning Docker as a data engineer</span
-              ><span class="status draft">Draft</span><span>—</span
-              ><a href="edit-post.html">Edit</a>
-            </div>
+            <div id="dashboardPosts"></div>
           </div>
         </div>
       </section>
     </main>
+    <script src="js/main.js"></script>
   </body>
 </html>

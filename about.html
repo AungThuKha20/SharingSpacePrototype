@@ -3,37 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>About — WriteSpace</title>
+    <title>About — SharingSpace</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
       <a class="logo" href="index.html">SharingSpace</a>
-
       <nav>
-        <a href="index.html">Home</a>
-        <a href="explore.html">Explore</a>
-        <a class="active" href="about.html">About</a>
+        <a href="index.html">Home</a><a href="explore.html">Explore</a
+        ><a class="active" href="about.html">About</a>
       </nav>
-
       <div class="header-actions">
-        <a class="write-link" href="create-post.html">Post</a>
-
-        <!-- Logged out -->
-        <a class="signin" id="signinLink" href="login.html"> Sign in </a>
-
-        <!-- Logged in -->
-        <a
+        <a class="write-link" data-write-link href="create-post.html">Post</a
+        ><a class="signin" id="signinLink" href="login.html">Sign in</a
+        ><a
           class="signin"
           id="dashboardLink"
           href="dashboard.html"
-          style="display: none; background-color: #111; color: #fff;"
-        >
-          Dashboard
-        </a>
-        
-
-        <button
+          style="display: none"
+          >Dashboard</a
+        ><button
           class="signin"
           id="logoutButton"
           type="button"
@@ -44,11 +33,11 @@
       </div>
     </header>
     <main class="about-page">
-      <p class="eyebrow">About SharingSpace</p>
+      <p class="eyebrow">ABOUT SHARINGSPACE</p>
       <h1>A place for students<br />to share knowledge.</h1>
       <p class="about-lead">
-        SharingSPACE is a proposed collaborative publishing platform designed for
-        students to share projects, technical knowledge, research and
+        SharingSpace is a proposed collaborative publishing platform designed
+        for students to share projects, technical knowledge, research and
         experiences with their community.
       </p>
       <div class="about-grid">
@@ -67,39 +56,15 @@
           </p>
         </div>
         <div>
-          <h2>Future development</h2>
+          <h2>AI assistant</h2>
           <p>
-            A later implementation could add a backend API, database, cloud
-            deployment, analytics and automated moderation.
+            The prototype demonstrates an AI learning assistant using local
+            response data. A future version could connect it to a real AI
+            service through a protected backend.
           </p>
         </div>
       </div>
     </main>
-     <script>
-      const isLoggedIn =
-        localStorage.getItem("writespace_logged_in") === "true";
-
-      const signinLink = document.getElementById("signinLink");
-
-      const dashboardLink = document.getElementById("dashboardLink");
-
-      const logoutButton = document.getElementById("logoutButton");
-
-      if (isLoggedIn) {
-        signinLink.style.display = "none";
-        dashboardLink.style.display = "inline-block";
-        logoutButton.style.display = "inline-block";
-      } else {
-        signinLink.style.display = "inline-block";
-        dashboardLink.style.display = "none";
-        logoutButton.style.display = "none";
-      }
-
-      logoutButton.addEventListener("click", () => {
-        localStorage.removeItem("writespace_logged_in");
-
-        window.location.reload();
-      });
-    </script>
+    <script src="js/main.js"></script>
   </body>
 </html>

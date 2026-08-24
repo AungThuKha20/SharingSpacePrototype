@@ -1,0 +1,27 @@
+{
+  "default": [
+    "That is an interesting idea. Try breaking the problem into smaller steps and validating each part before expanding it.",
+    "A useful next step would be to define the expected input, output and constraints before choosing an implementation.",
+    "For a student project, start with a small working version and improve it iteratively rather than trying to solve everything at once."
+  ],
+  "data engineering": [
+    "For a data engineering project, separate extraction, transformation, validation and loading into clear stages.",
+    "You could improve the pipeline by adding data quality checks and monitoring between transformation and loading.",
+    "PostgreSQL is a good starting point for structured data. A future version could add orchestration and cloud storage."
+  ],
+  "programming": [
+    "Try breaking the problem into smaller functions and test each part independently.",
+    "Consider how the application behaves with empty, invalid or unexpectedly large input.",
+    "A clear project structure and meaningful naming can make the code easier for another developer to maintain."
+  ],
+  "cybersecurity": [
+    "Authentication and authorisation should be treated as separate concerns when designing the system.",
+    "User input should be validated because browser data cannot be trusted automatically.",
+    "In a production system, sensitive credentials and API keys should never be exposed in frontend code."
+  ],
+  "ai": [
+    "Start by defining the problem and the expected output before choosing a model or AI service.",
+    "Good AI features still depend on useful data, clear evaluation criteria and sensible user experience.",
+    "For a student prototype, demonstrate the interaction first and connect a real model through a backend later."
+  ]
+}

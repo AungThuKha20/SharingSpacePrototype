@@ -1,1 +1,73 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Edit Post — WriteSpace</title><link rel="stylesheet" href="css/style.css"></head><body><header class="site-header"><a class="logo" href="index.html">WriteSpace</a><nav><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="dashboard.html">Dashboard</a></nav><div class="header-actions"><a class="signin" href="dashboard.html">Exit</a></div></header><main class="editor-page"><div class="editor-top"><span class="eyebrow">EDIT STORY</span><span>Last saved 2 minutes ago</span></div><input class="title-input" value="Learning Docker as a data engineer" aria-label="Post title"><input class="subtitle-input" value="Notes from building my first containerised data pipeline." aria-label="Post subtitle"><div class="editor-toolbar"><button onclick="document.execCommand('bold')"><b>B</b></button><button onclick="document.execCommand('italic')"><i>I</i></button><button onclick="document.execCommand('formatBlock',false,'h2')">H</button><button onclick="document.execCommand('insertUnorderedList')">• List</button></div><div class="editor" contenteditable="true"><p>Docker helped me make the development environment reproducible...</p><h2>Why containers matter</h2><p>For a data pipeline, predictable environments reduce configuration problems between development and deployment.</p></div><div class="editor-actions"><button class="button button-light" onclick="alert('Draft saved — prototype only.')">Save changes</button><button class="button button-dark" onclick="alert('Post published — prototype only.')">Publish</button></div></main></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Edit Post — SharingSpace</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="index.html">SharingSpace</a>
+      <nav>
+        <a href="index.html">Home</a><a href="explore.html">Explore</a
+        ><a href="dashboard.html">Dashboard</a>
+      </nav>
+      <div class="header-actions">
+        <button
+          class="signin"
+          id="logoutButton"
+          type="button"
+          style="border: 0; background: none; cursor: pointer"
+        >
+          Exit
+        </button>
+      </div>
+    </header>
+    <main class="editor-page">
+      <div class="editor-top">
+        <span class="eyebrow">EDIT STORY</span><span>Local prototype</span>
+      </div>
+      <input id="editTitle" class="title-input" aria-label="Post title" /><input
+        id="editSubtitle"
+        class="subtitle-input"
+        aria-label="Post subtitle"
+      /><select
+        id="editCategory"
+        class="category-select"
+        aria-label="Post category"
+      >
+        <option value="programming">Programming</option>
+        <option value="data engineering">Data Engineering</option>
+        <option value="cybersecurity">Cybersecurity</option>
+        <option value="ai">AI</option>
+      </select>
+      <div class="editor-toolbar">
+        <button type="button" onclick="document.execCommand('bold')">
+          <b>B</b></button
+        ><button type="button" onclick="document.execCommand('italic')">
+          <i>I</i></button
+        ><button
+          type="button"
+          onclick="document.execCommand('formatBlock', false, 'h2')"
+        >
+          H</button
+        ><button
+          type="button"
+          onclick="document.execCommand('insertUnorderedList')"
+        >
+          • List
+        </button>
+      </div>
+      <div id="editContent" class="editor" contenteditable="true"></div>
+      <div class="editor-actions">
+        <button id="saveEdit" class="button button-light" type="button">
+          Save changes</button
+        ><button id="publishEdit" class="button button-dark" type="button">
+          Update post
+        </button>
+      </div>
+    </main>
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -2,41 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>SharingSpace</title>
-
     <link rel="stylesheet" href="css/style.css" />
   </head>
-
   <body>
     <header class="site-header">
       <a class="logo" href="index.html">SharingSpace</a>
-
       <nav>
-        <a class="active" href="index.html">Home</a>
-        <a href="explore.html">Explore</a>
-        <a href="about.html">About</a>
+        <a class="active" href="index.html">Home</a
+        ><a href="explore.html">Explore</a><a href="about.html">About</a>
       </nav>
-
       <div class="header-actions">
-        <a class="write-link" href="create-post.html">Post</a>
-
-        <!-- Logged out -->
-        <a class="signin" id="signinLink" href="login.html"> Sign in </a>
-
-        <!-- Logged in -->
-        <a
+        <a class="write-link" data-write-link href="create-post.html">Post</a
+        ><a class="signin" id="signinLink" href="login.html">Sign in</a
+        ><a
           class="signin"
           id="dashboardLink"
           href="dashboard.html"
-          style="display: none; background-color: #111; color: #fff;"
-        >
-          Dashboard
-        </a>
-        
-
-        <button
+          style="display: none"
+          >Dashboard</a
+        ><button
           class="signin"
           id="logoutButton"
           type="button"
@@ -46,71 +32,47 @@
         </button>
       </div>
     </header>
-
     <main>
-      <section
-        style="
-          background: url(&quot;./images/bg.png&quot;) no-repeat center/cover;
-          color: white;
-        "
-        class="hero"
-      >
-        <div>
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
           <p class="eyebrow">
             Information Technological Students Publishing Platform
           </p>
-
-          <h1 class="hero-heading fx-negative">
-            Ideas worth<br />
-            sharing.
-          </h1>
-
+          <h1 class="hero-heading fx-negative">Ideas worth<br />sharing.</h1>
           <p class="hero-copy">
             A minimalist space for students to publish technical knowledge,
             ideas, projects and experiences.
           </p>
           <div style="margin-top: 40px">
-            <a class="btn liquid" href="explore.html"> Start reading </a>
+            <a class="btn liquid" href="explore.html">Start reading</a>
           </div>
         </div>
-
         <div class="hero-note">
-          <p>
-            Read. Share.<br />
-            Learn together.
-          </p>
+          <p>Read. Share.<br />Learn together.</p>
         </div>
       </section>
-
       <section class="section">
         <div class="section-heading">
           <div>
             <p class="eyebrow">FEATURED</p>
             <h2>Posts from the community</h2>
           </div>
-
           <a href="explore.html">View all →</a>
         </div>
-
         <article class="featured-card">
           <div class="featured-meta">DATA ENGINEERING · 8 MIN READ</div>
-
           <h3>What I learned building my first ETL pipeline</h3>
-
           <p>
             A practical reflection on extracting data, transforming it with
             Python and loading it into PostgreSQL.
           </p>
-
           <div class="author-line">
-            <span class="avatar">AK</span>
-            <span>Aung Kha</span>
-            <span>·</span>
-            <span>Aug 20</span>
+            <span class="avatar">AK</span><span>Aung Kha</span><span>·</span
+            ><span>Aug 20, 2026</span>
           </div>
         </article>
       </section>
-
       <section class="section">
         <div class="section-heading">
           <div>
@@ -118,109 +80,23 @@
             <h2>Recent posts</h2>
           </div>
         </div>
-
-        <div class="post-list">
-          <a class="post-row" href="article.html">
-            <div>
-              <span class="tag">PROGRAMMING</span>
-
-              <h3>From frontend development to data engineering</h3>
-
-              <p>
-                Why transferable software skills matter when changing technical
-                careers.
-              </p>
-
-              <small> Phyo Thiha · 6 min read · Aug 18 </small>
-            </div>
-
-            <span class="row-arrow">↗</span>
-          </a>
-
-          <a class="post-row" href="article.html">
-            <div>
-              <span class="tag">CYBERSECURITY</span>
-
-              <h3>Five security mistakes students make in web projects</h3>
-
-              <p>
-                A practical introduction to authentication, authorisation and
-                secure input handling.
-              </p>
-
-              <small> Khaing Myo Lin · 5 min read · Aug 17 </small>
-            </div>
-
-            <span class="row-arrow">↗</span>
-          </a>
-
-          <a class="post-row" href="article.html">
-            <div>
-              <span class="tag"> ARTIFICIAL INTELLIGENCE </span>
-
-              <h3>Understanding machine learning without the hype</h3>
-
-              <p>
-                A beginner-friendly look at models, data and what happens during
-                training.
-              </p>
-
-              <small> Wyne Thit Htoo · 7 min read · Aug 15 </small>
-            </div>
-
-            <span class="row-arrow">↗</span>
-          </a>
-        </div>
+        <div id="latestPosts" class="post-list"></div>
       </section>
-
       <section class="cta">
         <p class="eyebrow">FOR STUDENT WRITERS</p>
-
         <h2>Have something to say?</h2>
-
         <p>
           Turn your projects, research and experiences into something other
           students can learn from.
         </p>
-
-        <a class="button button-light" href="create-post.html">
-          Start writing
-        </a>
+        <a class="button button-light" data-write-link href="create-post.html"
+          >Start writing</a
+        >
       </section>
     </main>
-
     <footer class="site-footer">
-      <span>© 2026 SharingSpace</span>
-      <span>Student publishing prototype</span>
+      <span>© 2026 SharingSpace</span><span>Student publishing prototype</span>
     </footer>
-
-    <script>
-      const isLoggedIn =
-        localStorage.getItem("writespace_logged_in") === "true";
-
-      const signinLink = document.getElementById("signinLink");
-
-      const dashboardLink = document.getElementById("dashboardLink");
-
-      const logoutButton = document.getElementById("logoutButton");
-
-      if (isLoggedIn) {
-        signinLink.style.display = "none";
-        dashboardLink.style.display = "inline-block";
-        logoutButton.style.display = "inline-block";
-      } else {
-        signinLink.style.display = "inline-block";
-        dashboardLink.style.display = "none";
-        logoutButton.style.display = "none";
-      }
-
-      logoutButton.addEventListener("click", () => {
-        localStorage.removeItem("writespace_logged_in");
-
-        window.location.reload();
-      });
-    </script>
-
     <script src="js/main.js"></script>
   </body>
 </html>

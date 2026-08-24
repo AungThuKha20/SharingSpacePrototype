@@ -3,36 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Explore — WriteSpace</title>
+    <title>Explore — SharingSpace</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
       <a class="logo" href="index.html">SharingSpace</a>
-
       <nav>
-        <a href="index.html">Home</a>
-        <a class="active" href="explore.html">Explore</a>
-        <a href="about.html">About</a>
+        <a href="index.html">Home</a
+        ><a class="active" href="explore.html">Explore</a
+        ><a href="about.html">About</a>
       </nav>
-
       <div class="header-actions">
-        <a class="write-link" href="create-post.html">Post</a>
-
-        <!-- Logged out -->
-        <a class="signin" id="signinLink" href="login.html"> Sign in </a>
-
-        <!-- Logged in -->
-        <a
+        <a class="write-link" data-write-link href="create-post.html">Post</a
+        ><a class="signin" id="signinLink" href="login.html">Sign in</a
+        ><a
           class="signin"
           id="dashboardLink"
           href="dashboard.html"
-          style="display: none; background-color: #111; color: #fff"
-        >
-          Dashboard
-        </a>
-
-        <button
+          style="display: none"
+          >Dashboard</a
+        ><button
           class="signin"
           id="logoutButton"
           type="button"
@@ -63,102 +54,11 @@
           Cybersecurity</button
         ><button class="filter" data-filter="ai">AI</button>
       </div>
-      <div id="explorePosts" class="post-list">
-        <a class="post-row" data-category="data engineering" href="article.html"
-          ><div>
-            <span class="tag">DATA ENGINEERING</span>
-            <h3>What I learned building my first ETL pipeline</h3>
-            <p>
-              A practical reflection on extracting, transforming and loading
-              data.
-            </p>
-            <small>Aung Kha · 8 min read</small>
-          </div>
-          <span class="row-arrow">↗</span></a
-        >
-        <a class="post-row" data-category="programming" href="article.html"
-          ><div>
-            <span class="tag">PROGRAMMING</span>
-            <h3>From frontend development to data engineering</h3>
-            <p>Transferable software skills when changing technical careers.</p>
-            <small>Phyo Thiha · 6 min read</small>
-          </div>
-          <span class="row-arrow">↗</span></a
-        >
-        <a class="post-row" data-category="cybersecurity" href="article.html"
-          ><div>
-            <span class="tag">CYBERSECURITY</span>
-            <h3>Five security mistakes students make in web projects</h3>
-            <p>Authentication, authorisation and secure input handling.</p>
-            <small>Khaing Myo Lin · 5 min read</small>
-          </div>
-          <span class="row-arrow">↗</span></a
-        >
-        <a class="post-row" data-category="ai" href="article.html"
-          ><div>
-            <span class="tag">AI</span>
-            <h3>Understanding machine learning without the hype</h3>
-            <p>A beginner-friendly look at models, data and training.</p>
-            <small>Wyne Thit Htoo · 7 min read</small>
-          </div>
-          <span class="row-arrow">↗</span></a
-        >
-        <a class="post-row" data-category="programming" href="article.html">
-          <div>
-            <span class="tag">PROGRAMMING</span>
-            <h3>From frontend development to data engineering</h3>
-            <p>
-              Why transferable software skills can help developers move into new
-              areas of technology.
-            </p>
-            <small>Hlyan Htet Aung · 6 min read</small>
-          </div>
-          <span class="row-arrow">↗</span>
-        </a>
-
-        <a class="post-row" data-category="Programming" href="article.html">
-          <div>
-            <span class="tag">PROGRAMMING</span>
-            <h3>Five programming mistakes students make in web projects</h3>
-            <p>
-              A practical introduction to authentication, authorisation and
-              secure input handling.
-            </p>
-            <small>Aung Aung Oo · 5 min read</small>
-          </div>
-          <span class="row-arrow">↗</span>
-        </a>
-      </div>
+      <div id="explorePosts" class="post-list"></div>
     </main>
     <footer class="site-footer">
-      <span>© 2026 WriteSpace</span><span>Student publishing prototype</span>
+      <span>© 2026 SharingSpace</span><span>Student publishing prototype</span>
     </footer>
-    <script>
-      const isLoggedIn =
-        localStorage.getItem("writespace_logged_in") === "true";
-
-      const signinLink = document.getElementById("signinLink");
-
-      const dashboardLink = document.getElementById("dashboardLink");
-
-      const logoutButton = document.getElementById("logoutButton");
-
-      if (isLoggedIn) {
-        signinLink.style.display = "none";
-        dashboardLink.style.display = "inline-block";
-        logoutButton.style.display = "inline-block";
-      } else {
-        signinLink.style.display = "inline-block";
-        dashboardLink.style.display = "none";
-        logoutButton.style.display = "none";
-      }
-
-      logoutButton.addEventListener("click", () => {
-        localStorage.removeItem("writespace_logged_in");
-
-        window.location.reload();
-      });
-    </script>
     <script src="js/main.js"></script>
   </body>
 </html>

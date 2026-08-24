@@ -3,19 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>My Posts — WriteSpace</title>
+    <title>My Posts — SharingSpace</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="logo" href="index.html">WriteSpace</a>
+      <a class="logo" href="index.html">SharingSpace</a>
       <nav>
         <a href="index.html">Home</a><a href="explore.html">Explore</a
         ><a href="about.html">About</a>
       </nav>
       <div class="header-actions">
         <a class="write-link" href="create-post.html">Write</a
-        ><a class="signin" href="dashboard.html">Dashboard</a>
+        ><button
+          class="signin"
+          id="logoutButton"
+          type="button"
+          style="border: 0; background: none; cursor: pointer"
+        >
+          Exit
+        </button>
       </div>
     </header>
     <main class="page narrow">
@@ -26,24 +33,8 @@
           >Create new post</a
         >
       </div>
-      <div class="post-list">
-        <div class="post-row">
-          <div>
-            <span class="tag">PUBLISHED</span>
-            <h3>What I learned building my first ETL pipeline</h3>
-            <small>Published Aug 20 · 842 views</small>
-          </div>
-          <a href="edit-post.html">Edit →</a>
-        </div>
-        <div class="post-row">
-          <div>
-            <span class="tag">DRAFT</span>
-            <h3>Learning Docker as a data engineer</h3>
-            <small>Last edited Aug 19</small>
-          </div>
-          <a href="edit-post.html">Edit →</a>
-        </div>
-      </div>
+      <div id="myPostsList" class="post-list"></div>
     </main>
+    <script src="js/main.js"></script>
   </body>
 </html>
